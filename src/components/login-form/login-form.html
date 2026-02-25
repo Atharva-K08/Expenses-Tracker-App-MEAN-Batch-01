@@ -1,10 +1,15 @@
 <div class="card border-0 p-2 h-100">
-  <form class="d-flex justify-content-center flex-column h-100 align-items-center d-flex">
+  <form
+    [formGroup]="loginForm"
+    (ngSubmit)="getlogin()"
+    class="d-flex justify-content-center flex-column h-100 align-items-center d-flex"
+  >
     <h3 class="text-center">Sign In</h3>
     <p class="text-center w-75">Welcome there! Sign to continue with FinSet.</p>
     <div class="w-75">
       <label>Email</label>
       <input
+        formControlName="email"
         type="email"
         class="form-control mb-3 mt-2 border-secondary"
         style="border-radius: 20px; font-size: 14px; padding: 10px 14px"
@@ -14,6 +19,7 @@
     <div class="w-75">
       <label>Password</label>
       <input
+        formControlName="password"
         type="password"
         class="form-control mb-3 mt-2 border-secondary"
         style="border-radius: 20px; font-size: 14px; padding: 10px 14px"
@@ -25,10 +31,13 @@
         <input type="checkbox" class="form-check" />
         <label style="font-size: 14px">Keep me logged in</label>
       </span>
-      <a routerLink="/forget-password" class="text-decoration-none" style="font-size: 14px"> Forgot password? </a>
+      <a routerLink="/forget-password" class="text-decoration-none" style="font-size: 14px">
+        Forgot password?
+      </a>
     </div>
     <div class="w-75">
       <button
+        type="submit"
         class="btn btn-primary w-100 mt-5"
         style="border-radius: 20px; font-size: 14px; padding: 10px 14px"
       >
@@ -58,7 +67,9 @@
       <div class="w-75">
         <p class="text-center mt-3" style="font-size: 14px">
           Don't have an account?
-          <a routerLink="/register" class="text-decoration-none" style="cursor: pointer;"> Sign Up </a>
+          <a routerLink="/register" class="text-decoration-none" style="cursor: pointer">
+            Sign Up
+          </a>
         </p>
       </div>
     </div>
