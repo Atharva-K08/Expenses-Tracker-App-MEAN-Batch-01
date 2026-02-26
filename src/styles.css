@@ -1,1 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
+:root {
+  --primary-colour: #8370ff;
+  --secondary-colour: #f6f4ff;
+}
+
+.theme-primary-bg {
+  background-color: var(--primary-colour) !important;
+}
+.theme-secondary-bg {
+  background-color: var(--secondary-colour);
+}
+.theme-secondary-bg:hover {
+  color: black;
+}
