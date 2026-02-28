@@ -31,8 +31,35 @@
       </div>
     </div>
     <div class="col-10 p-0">
-      <div class="" style="height: 80px">Tata</div>
-      <div class="bg-warning-subtle" style="min-height: calc(100vh - 80px)">
+      <div class="d-flex align-items-center py-2 px-3 justify-content-between" style="height: 65px">
+        <!-- -------------------- -->
+        <div>
+          <div class="h5 m-0">Transcations</div>
+          <div class="text-secondary" style="font-size: 11px;">Overview of your activies</div>
+        </div>
+        <div class="d-flex gap-2 align-items-center">
+          <div class="card rounded-5" style="padding: 8px 12px"><i class="ri-search-line"></i></div>
+          <div class="card rounded-5" style="padding: 8px 12px">
+            <i class="ri-notification-line"></i>
+          </div>
+          <div class="card flex-row rounded-5 p-1">
+            <div class="rounded-5" >
+              <img
+                style="height: 35px; width: 35px"
+                class="img-fluid rounded-circle border border-1 border-black"
+                src="https://i.pinimg.com/1200x/97/fa/76/97fa76ccec00f086be12adad535ebd72.jpg"
+                alt=""
+              />
+            </div>
+            <div class="d-flex flex-column px-2 justify-content-center" >
+              <div class="fw-bold" style="font-size: 12px;">Atharva Sir</div>
+              <div style="font-size: 10px;">example@email.com</div>
+            </div>
+          </div>
+        </div>
+        <!-- -------------------- -->
+      </div>
+      <div style="min-height: calc(100vh - 80px); outline: 1px solid black;">
         <router-outlet></router-outlet>
       </div>
     </div>

@@ -13,3 +13,7 @@
 .theme-secondary-bg:hover {
   color: black;
 }
+* {
+  font-family: "Lexend", sans-serif;
+  font-size: 12px;
+}
