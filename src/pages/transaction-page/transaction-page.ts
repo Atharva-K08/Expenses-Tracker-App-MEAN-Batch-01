@@ -1,15 +1,19 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TransactionService } from '../../app/services/transaction-service';
 @Component({
   selector: 'app-transaction-page',
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule, FormsModule],
   templateUrl: './transaction-page.html',
   styleUrl: './transaction-page.css',
 })
 export class TransactionPage implements OnInit {
-  categories: any = [];
+  typeFilter: string = 'all';
+  categoryFilter: string = 'all';
+  transactions: any[] = [];
+  filteredTranscations: any[] = [];
+  categories: any[] = [];
   categoryForm!: FormGroup;
   transactionForm!: FormGroup;
   constructor(
@@ -19,6 +23,11 @@ export class TransactionPage implements OnInit {
   ngOnInit(): void {
     this.transactionService.getCategory().subscribe((res: any) => {
       this.categories = res.data;
+      this.cdr.detectChanges();
+    });
+    this.transactionService.getTransactions().subscribe((res: any) => {
+      this.transactions = res.data;
+      this.filteredTranscations = res.data;
       this.cdr.detectChanges();
     });
     this.categoryForm = new FormGroup({
@@ -54,7 +63,30 @@ export class TransactionPage implements OnInit {
       this.transactionService.addTransaction(this.transactionForm.value).subscribe((res) => {
         console.log('transaction added: ', res);
         this.transactionForm.reset();
+        this.transactionService.getTransactions().subscribe((res: any) => {
+          this.transactions = res.data;
+          this.cdr.detectChanges();
+        });
       });
     }
+  };
+  resetFilter = () => {
+    ((this.typeFilter = 'all'), (this.categoryFilter = 'all'));
+    this.filteredTranscations = this.transactions;
+  };
+  applyFilter = () => {
+    console.log('filter', this.typeFilter);
+    this.filteredTranscations = this.transactions;
+    if (this.typeFilter !== 'all') {
+      this.filteredTranscations = this.filteredTranscations.filter((transaction) => {
+        return transaction.type == this.typeFilter;
+      });
+    }
+    if (this.categoryFilter !== 'all') {
+      this.filteredTranscations = this.filteredTranscations.filter((transaction) => {
+        return transaction.category._id == this.categoryFilter;
+      });
+    }
+    this.cdr.detectChanges();
   };
 }

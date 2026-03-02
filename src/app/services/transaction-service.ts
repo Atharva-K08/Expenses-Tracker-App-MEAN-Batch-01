@@ -24,6 +24,13 @@ export class TransactionService {
       },
     });
   }
+  getTransactions() {
+    return this.http.get(`${this.apiURL}/transaction/`, {
+      headers: {
+        Authorization: `Bearer ${this.token}`,
+      },
+    });
+  }
   addTransaction(transaction: any) {
     return this.http.post(`${this.apiURL}/transaction/`, transaction, {
       headers: {
